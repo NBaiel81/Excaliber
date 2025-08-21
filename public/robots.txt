@@ -1,0 +1,5 @@
+# public/robots.txt
+User-agent: *
+Disallow:
+
+Sitemap: https://excaliberconstruction.ca/sitemap.xml
