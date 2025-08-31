@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    
 
     <!-- Favicon links -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon_io/apple-touch-icon.png') }}">
@@ -253,122 +254,112 @@
 
     <!-- Contact Section -->
     <section class="contact section" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-badge animate-fade-up">Get In Touch</div>
-                <h2 class="section-title animate-fade-up">
-                    Start Your Project
-                </h2>
-                <p class="section-subtitle animate-fade-up">
-                    Contact us today for a consultation and discover how we can bring your vision to life.
-                </p>
+    <div class="container">
+        <div class="section-header">
+        <div class="section-badge animate-fade-up">Get In Touch</div>
+        <h2 class="section-title animate-fade-up">Start Your Project</h2>
+        <p class="section-subtitle animate-fade-up">
+            Contact us today for a consultation and discover how we can bring your vision to life.
+        </p>
+        </div>
+
+        <div class="contact-content">
+        <div class="contact-info animate-slide-right">
+            <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-details">
+                <h3>Our Location</h3>
+                <p>Winnipeg, MB</p>
             </div>
-            
-            <div class="contact-content">
-                <div class="contact-info animate-slide-right">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Our Location</h3>
-                            <p>Winnipeg, MB</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Call Us</h3>
-                            <p>431 348 0018<br>Mon - Fri: 8AM - 5PM</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Email Us</h3>
-                            <p>ExCaliberCon@gmail.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Follow Us</h3>
-                            <p><a href="https://www.instagram.com/" class="service-link">Instagram</a></p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form-container animate-slide-left">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Your Name *</label>
-                                <input type="text" id="name" name="name" required>
-                                <span class="error-message"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Your Email *</label>
-                                <input type="email" id="email" name="email" required>
-                                <span class="error-message"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Your Phone</label>
-                            <input type="tel" id="phone" name="phone">
-                            <span class="error-message"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service">Service Needed *</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select a service</option>
-                                <option value="tin-roofing">Tin Roofing</option>
-                                <option value="shingles">Shingles</option>
-                                <option value="landscaping">Landscaping</option>
-                                <option value="painting">Painting</option>
-                                <option value="drywalling">Drywalling</option>
-                                <option value="tree-removal">Tree Removal</option>
-                                <option value="demolition">Demolition</option>
-                                <option value="grass-cutting">Grass Cutting</option>
-                                <option value="snow-removal">Snow Removal</option>
-                                <option value="other">Other</option>
-                            </select>
-                            <span class="error-message"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Your Message *</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
-                            <span class="error-message"></span>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <span class="btn-text">Send Message</span>
-                            <span class="btn-loading">
-                                <i class="fas fa-spinner fa-spin"></i>
-                                Sending...
-                            </span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                        
-                        <div class="form-success" id="formSuccess">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Thank you! We'll contact you within 24 hours.</p>
-                        </div>
-                    </form>
-                </div>
+            </div>
+
+            <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <div class="contact-details">
+                <h3>Call Us</h3>
+                <p>431 348 0018<br>Mon - Fri: 8AM - 5PM</p>
+            </div>
+            </div>
+
+            <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-details">
+                <h3>Email Us</h3>
+                <p>ExCaliberCon@gmail.com</p>
+            </div>
+            </div>
+
+            <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+            <div class="contact-details">
+                <h3>Follow Us</h3>
+                <p><a href="https://www.instagram.com/" class="service-link">Instagram</a></p>
+            </div>
             </div>
         </div>
+
+        <div class="contact-form-container animate-slide-left">
+            <form class="contact-form" id="contactForm" action="/api/contact" method="post" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" required>
+                <span class="error-message"></span>
+                </div>
+                <div class="form-group">
+                <label for="email">Your Email *</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error-message"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Your Phone</label>
+                <input type="tel" id="phone" name="phone">
+                <span class="error-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="service">Service Needed *</label>
+                <select id="service" name="service" required>
+                <option value="">Select a service</option>
+                <option value="tin-roofing">Tin Roofing</option>
+                <option value="shingles">Shingles</option>
+                <option value="landscaping">Landscaping</option>
+                <option value="painting">Painting</option>
+                <option value="drywalling">Drywalling</option>
+                <option value="tree-removal">Tree Removal</option>
+                <option value="demolition">Demolition</option>
+                <option value="grass-cutting">Grass Cutting</option>
+                <option value="snow-removal">Snow Removal</option>
+                <option value="other">Other</option>
+                </select>
+                <span class="error-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your Message *</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+                <span class="error-message"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+                <span class="btn-text">Send Message</span>
+                <span class="btn-loading" style="display:none">
+                <i class="fas fa-spinner fa-spin"></i>
+                Sending…
+                </span>
+                <i class="fas fa-paper-plane"></i>
+            </button>
+
+            <div class="form-success" id="formSuccess" style="display:none">
+                <i class="fas fa-check-circle"></i>
+                <p>Thank you! We'll contact you within 24 hours.</p>
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
     </section>
     <!-- Team Section -->
     <section id="team" class="team section">
@@ -498,8 +489,9 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/forms.js"></script>
+    <script src="{{ url_for('static', filename='js/animations.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/gallery.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/forms.js') }}?v=3" defer></script>
 </body>
 </html>

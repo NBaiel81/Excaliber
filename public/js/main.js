@@ -357,6 +357,7 @@ class ExcaliberConstruction {
             this.closeMobileMenu();
         }
     }
+    
 }
 
 // Initialize the application

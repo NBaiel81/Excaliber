@@ -324,38 +324,43 @@ class FormController {
     async handleFormSubmit(formName) {
         const formData = this.forms.get(formName);
         if (!formData || this.currentSubmission) return;
-        
-        // Validate form
+
         if (!this.validateForm(formName)) {
             this.showFormError('Please correct the errors above before submitting.');
             return;
         }
-        
-        // Prepare form data
-        const submitData = this.collectFormData(formName);
-        
-        // Start submission
+
+        const payload = this.collectFormData(formName);
+        const endpoint = formData.endpoint || formData.element.action || '/api/contact';
+
         this.currentSubmission = formName;
         this.showLoadingState(formName);
-        
+
+        const ac = new AbortController();
+        const t = setTimeout(() => ac.abort(), 10000); // 10s timeout
+
         try {
-            // Simulate API call (replace with actual endpoint)
-            const response = await this.submitFormData(formData.endpoint, submitData);
-            
-            if (response.success) {
-                this.showSuccessState(formName);
-                formData.onSuccess(response);
-            } else {
-                throw new Error(response.message || 'Submission failed');
-            }
-        } catch (error) {
-            this.showErrorState(formName, error.message);
-            formData.onError(error);
+            const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload),
+            signal: ac.signal
+            });
+            const json = await res.json().catch(() => ({}));
+            if (!res.ok || !json.success) throw new Error(json.error || `HTTP ${res.status}`);
+
+            this.showSuccessState(formName);
+            formData.onSuccess(json);
+        } catch (err) {
+            this.showErrorState(formName, err.message || 'Network error');
+            formData.onError(err);
         } finally {
+            clearTimeout(t);
             this.currentSubmission = null;
             this.hideLoadingState(formName);
         }
     }
+
 
     collectFormData(formName) {
         const formData = this.forms.get(formName);
@@ -369,16 +374,18 @@ class FormController {
     }
 
     async submitFormData(endpoint, data) {
-        // Simulate API call - replace with actual implementation
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                // Simulate successful submission
-                resolve({
-                    success: true,
-                    message: 'Thank you for your message. We\'ll contact you within 24 hours.'
-                });
-            }, 2000);
+        console.log('POSTing to', endpoint, data); // debug
+        const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
         });
+
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || !json.success) {
+            throw new Error(json.error || `HTTP ${res.status}`);
+        }
+        return json; // { success: true, message: "..." }
     }
 
     showLoadingState(formName) {
@@ -659,6 +666,8 @@ const formStyles = `
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+    .form-success { display: none; }
+    .form-success.show { display: block; }
 `;
 
 // Inject form styles
