@@ -2,7 +2,6 @@
 __pycache__/
 *.py[cod]
 *.pyo
-*.so
 
 # Virtual environments
 .venv/
@@ -10,26 +9,30 @@ venv/
 ENV/
 env/
 
-# Flask instance & local DBs
+# Secrets / environment files
+.env
+*.env
+server/.env
+
+# Local data / DBs
 instance/
 *.db
 *.sqlite3
 
-# Logs
-*.log
-
-# Tests / coverage
+# Tests / coverage caches
 .pytest_cache/
 .coverage
 htmlcov/
 
-# OS / editor
+# OS / editor junk
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
 
-# (If you later add a JS build step)
-node_modules/
-dist/
-build/
+# Git metadata (not needed in build context)
+.git/
+.gitignore
+
+# Logs
+*.log
